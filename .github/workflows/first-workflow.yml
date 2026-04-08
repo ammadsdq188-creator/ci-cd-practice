@@ -54,5 +54,5 @@ jobs:
           else
             echo "Enough content ✅"
           fi
-       - name: Final success message
-         run: echo "ALL checks passed pipeline sucessfull!"
+- name: Final success message
+run: echo "ALL checks passed pipeline sucessfull!"
