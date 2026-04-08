@@ -27,3 +27,9 @@ jobs:
             echo "File is empty ❌"
             exit 1
           fi
+    
+      -name: Show file content
+       run: cat app.txt
+
+      -name: count lines in files 
+       run: wc -1 app.txt
