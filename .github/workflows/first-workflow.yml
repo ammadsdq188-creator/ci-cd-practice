@@ -28,8 +28,8 @@ jobs:
             exit 1
           fi
 
-      -name: Show file content
-       run: cat app.txt
+      - name: Show file content
+        run: cat app.txt
 
-      -name: count lines in file
-       run: wc -1 app.txt
+      - name: Count lines in file
+        run: wc -l app.txt
