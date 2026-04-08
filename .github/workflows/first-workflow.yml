@@ -1,17 +1,26 @@
-name: My First Workflow
+name: Check File Workflow
 
 on: [push]
 
 jobs:
-  first-job:
+  check-file:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show current directory
-        run: pwd
+      - name: Check if app.txt exists
+        run: |
+          if [ -f app.txt ]; then
+            echo "File exists ✅"
+          else
+            echo "File not found ❌"
+            exit 1
+          fi
 
-      - name: List files
-        run: ls
-
-      - name: Print message
-        run: echo "Learning DevOps is fun!"
+      - name: Check file content
+        run: |
+          if [ -s app.txt ]; then
+            echo "File has content ✅"
+          else
+            echo "File is empty ❌"
+            exit 1
+          fi
