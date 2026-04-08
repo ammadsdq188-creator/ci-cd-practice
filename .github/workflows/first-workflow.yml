@@ -27,7 +27,10 @@ jobs:
             echo "File is empty ❌"
             exit 1
           fi
-    
+     steps:
+        - name: checkout code 
+          uses: actions/checkout@v3  
+
       -name: Show file content
        run: cat app.txt
 
