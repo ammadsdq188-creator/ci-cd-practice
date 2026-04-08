@@ -47,7 +47,7 @@ jobs:
           fi
        -name: Check devOps keyword
         run : |
-             if [ grep -q "DevOps" app.txt ]; then
+             if grep -q "DevOps" app.txt; then
              echo "DevOps is present"
              else
              echo "DevOps not found"
