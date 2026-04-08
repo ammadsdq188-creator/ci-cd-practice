@@ -34,14 +34,14 @@ jobs:
       - name: Count lines in file
         run: wc -l app.txt
 
-      - name: Check minimum Lines
-        run:
-        lines=$(wc -l < app.txt)
-        echo "lines: $lines"
+      - name: Check minimum lines
+        run: |
+          lines=$(wc -l < app.txt)
+          echo "Lines: $lines"
 
-        if [ $lines -lt 2 ]; then
-        echo "Not enough content"
-        exit 1
-        else 
-        echo "enough content"
-        fi
+          if [ $lines -lt 2 ]; then
+            echo "Not enough content ❌"
+            exit 1
+          else
+            echo "Enough content ✅"
+          fi
