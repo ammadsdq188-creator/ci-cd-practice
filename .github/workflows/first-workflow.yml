@@ -1,59 +1,28 @@
-name: Check File Workflow
+name: Multi Line Comment
 
 on: [push]
 
 jobs:
-  check-file:
-    runs-on: ubuntu-latest
+check-file:
+runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+steps:
+-name: checkout code
+uses: actions/checkout@v3
 
-      - name: Check if app.txt exists
-        run: |
-          if [ -f app.txt ]; then
-            echo "File exists ✅"
-          else
-            echo "File not found ❌"
-            exit 1
-          fi
+-name: check file exists
+run: |
+if [ -f app.txt ] then
+echo "file exists"
+else
+echo "File missing"
+exit 1
+fi
 
-      - name: Check file content
-        run: |
-          if [ -s app.txt ]; then
-            echo "File has content ✅"
-          else
-            echo "File is empty ❌"
-            exit 1
-          fi
+second-job:
+needs: check-file
+runs-on: ubuntu-latest
 
-      - name: Check DevOps keyword
-        run: |
-          if grep -qi "devops" app.txt; then
-            echo "DevOps is present ✅"
-          else
-            echo "DevOps not found ❌"
-            exit 1
-          fi
-
-      - name: Show file content
-        run: cat app.txt
-
-      - name: Count lines in file
-        run: wc -l app.txt
-
-      - name: Check minimum lines
-        run: |
-          lines=$(wc -l < app.txt)
-          echo "Lines: $lines"
-
-          if [ $lines -lt 2 ]; then
-            echo "Not enough content ❌"
-            exit 1
-          else
-            echo "Enough content ✅"
-          fi
-
-      - name: Final success message
-        run: echo "All checks passed pipeline sucessfull"
+steps:
+-name: Second job message
+run: echo "Second job running"
