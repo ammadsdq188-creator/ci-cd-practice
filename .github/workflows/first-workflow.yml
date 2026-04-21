@@ -8,8 +8,9 @@ jobs:
 
     steps:
       - name: Job 1 step
-        run: echo "Job 1 running"
-
+        run: |
+          echo "Job 1 running"
+          exit 1 
   job2:
     needs: job1
     runs-on: ubuntu-latest
