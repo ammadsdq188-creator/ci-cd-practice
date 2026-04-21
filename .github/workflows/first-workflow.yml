@@ -1,28 +1,17 @@
-name: Multi Line Workflow
+name: Parallel test workflow
 
 on: [push]
 
 jobs:
-  check-file:
+  job1:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout code
-        uses: actions/checkout@v3
+      - name: Job 1 step
+        run: echo "Job 1 running"
 
-      - name: check file exists
-        run: |
-          if [ -f app.txt ]; then
-            echo "file exists"
-          else
-            echo "File missing"
-            exit 1
-          fi
-
-  second-job:
-    needs: check-file
+  job2:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Second job message
-        run: echo "Second job running"
+      - name: Job 2 step
+        run: echo "Job 2 running"
