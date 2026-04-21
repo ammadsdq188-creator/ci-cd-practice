@@ -1,30 +1,33 @@
-name: Artifact Demo
+name: Simple CI Pipeline
 
 on: [push]
 
 jobs:
-  job1:
+  checks:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create file
-        run: echo "Hello from job 1" > output.txt
+      - name: Check file
+        run: |
+          if [ -f app.txt ]; then
+            echo "File exists"
+          else
+            echo "Missing file"
+          fi
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: my-file
-          path: output.txt
-
-  job2:
-    needs: job1
+  build:
+    needs: checks
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: my-file
+      - name: Build step
+        run: echo "building project"
 
-      - name: Read file
-        run: cat output.txt
+  info:
+    needs: build
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Final step
+        run: echo "pipeline completed"
