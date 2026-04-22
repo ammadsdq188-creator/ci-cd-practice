@@ -3,7 +3,7 @@ name: Simple CI Pipeline
 on: [push]
 
 jobs:
-  check:
+  checks:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,7 @@ jobs:
     steps:
       - name: Build step
         run: echo "building project"
+
       - name: Use secret
         run: echo "secret is ${{ secrets.MY_SECRET }}"
 
