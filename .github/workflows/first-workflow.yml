@@ -8,22 +8,19 @@ env:
 jobs:
 
   check:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
 
     steps:
-      - name: checkout code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Debug start
-        run: echo "Job started"
-
-      - name: check file exists
+      - name: Check file exists
         run: |
           if [ -f app.txt ]; then
-            echo "file exists"
+            echo "File exists"
           else
             echo "Missing file"
-          exit 1
+            exit 1
           fi
 
   build:
@@ -35,12 +32,12 @@ jobs:
         run: echo "Building $PROJECT_NAME"
 
       - name: Create artifact file
-        run: echo "Build complete for $PROJECT_NAME" > result.txt
+        run: echo "Build completed for $PROJECT_NAME" > result.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Build-result
+          name: build-result
           path: result.txt
 
   report:
@@ -53,5 +50,5 @@ jobs:
         with:
           name: build-result
 
-      - name: show result
+      - name: Show result
         run: cat result.txt
