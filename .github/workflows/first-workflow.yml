@@ -3,7 +3,7 @@ name: Simple CI Pipeline
 on: [push]
 
 jobs:
-  checks:
+  check:   # ✅ MUST be 'check'
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +17,7 @@ jobs:
           fi
 
   build:
-    needs: check
+    needs: check   # ✅ matches exactly
     runs-on: ubuntu-latest
 
     steps:
@@ -28,7 +28,7 @@ jobs:
         run: echo "secret is ${{ secrets.MY_SECRET }}"
 
   info:
-    needs: build
+    needs: build   # ✅ correct chain
     runs-on: ubuntu-latest
 
     steps:
