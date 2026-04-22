@@ -1,7 +1,35 @@
+name: Simple CI Pipeline
+
+on: [push]
+
 jobs:
-  job1:
+  check:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check file
+        run: |
+          if [ -f app.txt ]; then
+            echo "File exists"
+          else
+            echo "Missing file"
+            exit 1
+          fi
+
+  build:
+    needs: check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build step
+        run: echo "building project"
       - name: Use secret
-        run: echo "Secret is ${{ secrets.MY_SECRET }}"
+        run: echo "secret is ${{ secrets.MY_SECRET }}"
+
+  info:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Final step
+        run: echo "pipeline completed"
