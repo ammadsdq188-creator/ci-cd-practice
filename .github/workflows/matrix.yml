@@ -32,3 +32,13 @@ jobs:
         with:
           name: test-result-${{ matrix.python-version }}
           path: test-results.txt
+
+  deploy-production:
+    needs: test
+    environment: production
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to production
+        run: echo "Deploying to production..."
