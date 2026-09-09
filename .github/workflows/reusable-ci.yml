@@ -2,6 +2,10 @@ name: Reusable CI
 
 on:
   workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
 
 jobs:
   reusable-test:
@@ -9,4 +13,4 @@ jobs:
 
     steps:
       - name: Run reusable test
-        run: echo "Hello from reusable workflow"
+        run: echo "Running CI for ${{ inputs.environment }}"

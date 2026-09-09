@@ -6,3 +6,5 @@ on:
 jobs:
   call-reusable-ci:
     uses: ./.github/workflows/reusable-ci.yml
+    with:
+      environment: production
