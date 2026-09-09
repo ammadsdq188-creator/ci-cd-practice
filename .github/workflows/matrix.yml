@@ -18,6 +18,15 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Check secret
+        run: |
+          if [ -n "${{ secrets.DEMO_SECRET }}" ]; then
+            echo "Secret is available"
+          else
+            echo "Secret is missing"
+            exit 1
+          fi
+
       - name: Show environment
         run: echo "APP_ENV = ${{ vars.APP_ENV }}"
 
