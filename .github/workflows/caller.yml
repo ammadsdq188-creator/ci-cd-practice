@@ -1,0 +1,8 @@
+name: Caller Workflow
+
+on:
+  push:
+
+jobs:
+  call-reusable-ci:
+    uses: ./.github/workflows/reusable-ci.yml
